@@ -18,15 +18,15 @@ $conn = mysqli_connect('localhost', 'root', '', 'pw2024_tubes_233040111');
 <body>
   <div class="container">
     <div class="row">
-      <h1>Hey, <br> Welcome</h1>
+      <h1>Sign In</h1>
       <form action="">
        <label>
-        Username
-        <input type="text" name="username" placeholder="Type your Username...">
+        Email
+        <input type="email" name="email" placeholder="Enter Email">
        </label>
        <label>
         Password
-        <input type="password" name="password" placeholder="Type your Password...">
+        <input type="password" name="password" placeholder="Enter Password">
        </label>
        <button name="submit">Login</button>
       </form>
