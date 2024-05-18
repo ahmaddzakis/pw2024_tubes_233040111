@@ -1,9 +1,37 @@
 <?php
-// Koneksi ke database
-$conn = mysqli_connect('localhost', 'root', '', 'pw2024_tubes_233040111');
+session_start();
+require("../functions/fungsi.php");
+if (isset($_POST["sign-in"])) {
+  $conn = koneksi();
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+  $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
+    
+  // Cek username
+  if(mysqli_num_rows($result) === 1) {
+    // Cek password
 
-// Query ke tabel mahasiswa
-// $result = mysqli_query($conn, '');
+    $row = mysqli_fetch_assoc(($result));
+    if (password_verify($password, $row["password"])) {
+      $_SESSION["login"] = true;
+
+      header ("Location: index.php");
+      exit;
+    }
+  }
+  
+  $error = true;
+}
+
+
+if(isset($_POST["sign-up"])) {
+  if(registrasi($_POST) > 0) {
+    echo "<script>alert('Halo, User Baru Berhasil ditambahkan!')</script>";
+  } else {
+    $conn = koneksi();
+    echo mysqli_error($conn);
+  }
+}
 
 ?>
 
@@ -12,25 +40,62 @@ $conn = mysqli_connect('localhost', 'root', '', 'pw2024_tubes_233040111');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>LOGIN</title>
   <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
   <div class="container">
-    <div class="row">
-      <h1>Sign In</h1>
-      <form action="">
+    <div class="row-left">
+      <h1>Halo, Selamat Datang Kembali</h1>
+      <h3>Masukkan alamat email Anda</h3>
+      <form action="" method="post">
        <label>
         Email
-        <input type="email" name="email" placeholder="Enter Email">
+        <input type="email" name="email" id="email" placeholder="Enter Email" required>
        </label>
        <label>
         Password
-        <input type="password" name="password" placeholder="Enter Password">
+        <input type="password" name="password" id="password" placeholder="Enter Password" required>
        </label>
-       <button name="submit">Login</button>
+       <button type="submit" name="sign-in">Sign In</button>
       </form>
+
+  
     </div>
+    <div class="row-right">
+    <h1>Selamat Datang</h1>
+      <!-- <h2>Sign Up</h2> -->
+      <h3>Buat Akun</h3>
+      <form action="" method="post">
+       <label>
+        Email
+        <input type="email" name="email" id="email" placeholder="Enter Email" required>
+       </label>
+       <label>
+        Username
+        <input type="text" name="username" id="username" placeholder="Enter Username" required>
+       </label>
+       <label>
+        Password
+        <input type="password" name="password1" id="password" placeholder="Enter Password" required>
+       </label>
+       <label>
+        Konfirmasi Password
+        <input type="password" name="password2" id="password" placeholder="Enter Password Again" required>
+       </label>
+       <button type="submit" name="sign-up">Sign Up</button>
+      </form>
+
+    </div>
+    <?php if (isset($error)) : ?>
+      <div class="error">
+    <h1>Email / Password salah!</h1>
+    <p>Silakan coba lagi!</p>
+    <form action="">
+      <button type="submit">Lanjutkan</button>
+    </form>
+  </div>
+  <?php endif; ?>
   </div>
 </body>
 </html>

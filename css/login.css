@@ -11,11 +11,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(../img/bgstar.jpg);
+  gap: 20px;
+  background: rgb(2, 0, 36);
+  background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgb(65, 64, 56) 35%, rgba(0, 212, 255, 1) 100%);
 }
 
-.row {
+.row-left {
   color: azure;
+  height: 700px;
+  width: 500px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid white;
+  border-radius: 100px 10px 100px 10px;
+  text-shadow: #000 1px 0 10px;
+  flex-direction: column;
+  transition: 1s;
+}
+
+.row-left:hover {
+  transform: scale(102%);
+  box-shadow: 10px 5px 5px azure;
+}
+
+.row-right {
+  color: lavender;
   height: 700px;
   width: 500px;
   background: rgb(2, 0, 36);
@@ -23,15 +45,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 5px solid black;
-  border-radius: 100px 10px 100px 10px;
+  border: 5px solid lavender;
+  border-radius: 10px 100px 10px 100px;
+  text-shadow: #000 1px 0 10px;
   flex-direction: column;
-  transition: 1s all;
+  transition: 1s;
 }
 
-.row:hover {
+.row-right:hover {
   transform: scale(102%);
-  box-shadow: 10px 5px 5px red;
+  box-shadow: 10px 5px 5px lavender;
 }
 
 label,
@@ -41,12 +64,13 @@ input {
 
 input,
 button {
+  font-weight: bold;
   padding: 10px;
   height: 50px;
   width: 400px;
   margin-bottom: 20px;
-  border: 2px solid black;
-  border-radius: 20px;
+  border: 2px solid white;
+  border-radius: 20px 5px 20px 5px;
 }
 
 button {
@@ -55,6 +79,26 @@ button {
 }
 
 button:hover {
-  transform: scale(90%);
+  transform: scale(95%);
   border: 5px solid black;
+  opacity: 0.8;
+}
+
+.error {
+  position: absolute;
+  padding: 50px;
+  background: rgb(2, 0, 36);
+  background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(255, 0, 0, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  border: 5px solid white;
+  border-radius: 50px 50px 50px 0;
+  text-shadow: rgb(255, 204, 0) 1px 0 10px;
+  box-shadow: 5px 5px 5px black;
+  text-align: center;
+  line-height: 50px;
+  color: wheat;
+  transition: 1s all;
+}
+
+.error:hover {
+  transform: skewX(5deg);
 }
