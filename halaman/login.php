@@ -9,11 +9,15 @@ if (isset($_POST["sign-in"])) {
     
   // Cek username
   if(mysqli_num_rows($result) === 1) {
-    // Cek password
+  // Cek password
 
     $row = mysqli_fetch_assoc(($result));
     if (password_verify($password, $row["password"])) {
       $_SESSION["login"] = true;
+      $email = $_POST["email"];
+      $_SESSION["username"] = user($email);
+
+      // var_dump($_SESSION["username"]);
 
       header ("Location: index.php");
       exit;
@@ -48,36 +52,32 @@ if(isset($_POST["sign-up"])) {
 
 <body>
     <div class="container" id="container">
+    <?php if (isset($error)) : ?>
+                    <div class="error">
+                  <h1>Email / Password salah!</h1>
+                  <p>Silakan coba lagi!</p>
+                  <a href="login.php"><button type="button">Lanjutkan</button></a>
+                </div>
+              <?php endif; ?>
         <div class="form-container sign-up">
             <form action="" method="post">
                 <h1>Buat Akun</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>atau gunakan email anda untuk pendaftaran</span>
                 <input type="text" name="username" id="username" placeholder="Username" required>
                 <input type="email" name="email" id="email" placeholder="Email" required>
                 <input type="password" name="password1" id="password" placeholder="Password" required>
                 <input type="password" name="password2" id="password" placeholder="Konfirmasi Password" required>
+                <label for="admin">Admin</label>
+                <input type="radio" name="radio" id="admin" value="Admin">
+                <label for="users">User</label>
+                <input type="radio" name="radio" id="users" value="Users">
                 <button type="submit" name="sign-up">Mendaftar</button>
             </form>
         </div>
         <div class="form-container sign-in">
             <form action="" method="post">
                 <h1>Masuk</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>atau gunakan email password anda</span>
                 <input type="email" name="email" id="email" placeholder="Email" required>
                 <input type="password" name="password" id="password" placeholder="Password" required>
-                <a href="#">Lupa password?</a>
                 <button type="submit" name="sign-in">Masuk</button>
             </form>
         </div>
@@ -95,15 +95,7 @@ if(isset($_POST["sign-up"])) {
                 </div>
             </div>
         </div>
-        <!-- <?php if (isset($error)) : ?>
-      <div class="error">
-    <h1>Email / Password salah!</h1>
-    <p>Silakan coba lagi!</p>
-    <form action="">
-      <button type="submit">Lanjutkan</button>
-    </form>
-  </div>
-  <?php endif; ?> -->
+        
     </div>
     <script src="../js/script.js"></script>
 </body>

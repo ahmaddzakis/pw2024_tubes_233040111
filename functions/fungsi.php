@@ -47,4 +47,19 @@ function registrasi($data) {
 
   return mysqli_affected_rows($conn);
 }
+
+function user($data) {
+  $conn = koneksi();
+
+  $email = $data;
+
+  $result = mysqli_query($conn, "SELECT name FROM users WHERE email = '$email'");
+
+  $username = mysqli_fetch_assoc($result)["name"];
+
+  return $username;
+}
+
+
+
 ?>
