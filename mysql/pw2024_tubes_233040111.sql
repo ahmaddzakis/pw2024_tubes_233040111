@@ -44,10 +44,10 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kursus`
+-- Table structure for table `courses`
 --
 
-CREATE TABLE `kursus` (
+CREATE TABLE `courses` (
   `id` int NOT NULL,
   `category_id` int NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -56,10 +56,10 @@ CREATE TABLE `kursus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `kursus`
+-- Dumping data for table `courses`
 --
 
-INSERT INTO `kursus` (`id`, `category_id`, `name`, `teacher_id`, `price`) VALUES
+INSERT INTO `courses` (`id`, `category_id`, `name`, `teacher_id`, `price`) VALUES
 (1, 1, 'KURSUS BAHASA INGGRIS DASAR', 1, '50.00');
 
 -- --------------------------------------------------------
@@ -85,9 +85,9 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kursus`
+-- Indexes for table `courses`
 --
-ALTER TABLE `kursus`
+ALTER TABLE `courses`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`,`teacher_id`);
 
@@ -108,9 +108,9 @@ ALTER TABLE `categories`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `kursus`
+-- AUTO_INCREMENT for table `courses`
 --
-ALTER TABLE `kursus`
+ALTER TABLE `courses`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -124,10 +124,10 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `kursus`
+-- Constraints for table `courses`
 --
-ALTER TABLE `kursus`
-  ADD CONSTRAINT `kursus_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `courses`
+  ADD CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

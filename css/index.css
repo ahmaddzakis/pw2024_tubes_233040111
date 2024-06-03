@@ -80,6 +80,10 @@ body {
 /* End Home */
 
 /* Categories */
+.card {
+  height: 400px !important;
+  overflow-y: hidden;
+}
 .categories {
   display: flex;
   justify-content: center;
@@ -103,7 +107,7 @@ body {
 }
 
 .categories h2 {
-  margin-top: -9rem;
+  /* margin-top: -9rem; */
   letter-spacing: 10px;
   margin-bottom: 50px;
 }
@@ -162,6 +166,16 @@ body {
   margin-top: -9rem;
   letter-spacing: 10px;
   margin-bottom: 50px;
+}
+
+.card {
+  transition: 300ms;
+  box-shadow: 5px 5px 10px 2px salmon;
+}
+
+.card:hover {
+  transform: scale(0.95);
+  box-shadow: 5px 5px 10px 2px white;
 }
 
 /* End Teachers */

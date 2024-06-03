@@ -1,5 +1,5 @@
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar">
       <div class="container">
         <a class="navbar-brand" href="#">CaNDy ENGLISH COURSE</a>
         <button
@@ -29,19 +29,19 @@
           </div>
           <div class="offcanvas-body">
             <div class="navbar-nav ms-auto">
-              <a class="nav-link" href="#home">Home</a>
-              <a class="nav-link" href="#categories">Kategori</a>
-              <a class="nav-link" href="#teachers">Pengajar</a>
+              <a class="nav-link" href="../halaman/index.php">Home</a>
+              <a class="nav-link" href="../halaman/categories.php">Categories</a>
+              <a class="nav-link" href="../halaman/coursesPage.php">Courses</a>
+              <a class="nav-link" href="../halaman/teachers.php">Teachers</a>
               <div class="dropdown-center">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Profil
+                <button class="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  ACCOUNT
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="login.php">Masuk</a></li>
-                  <li><a class="dropdown-item" href="login.php">Daftar</a></li>
+                  <li><a class="dropdown-item" href="../admin/dashboard.php">Admin</a></li>
                 </ul>
               </div>
-              <a class="nav-link" href="login.php">Logout</a>
+              <a class="nav-link" href="../logout.php">Logout</a>
             </div>
           </div>
         </div>

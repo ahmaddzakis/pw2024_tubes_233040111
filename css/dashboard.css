@@ -1,0 +1,61 @@
+body {
+  background-image: url(../img/bgstar.jpg);
+}
+
+.kotak {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.teacher,
+.course,
+.category {
+  width: 300px;
+  height: 250px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 4px 2px #888888;
+}
+
+.teacher {
+  background-color: #eaea;
+  transition: 1s;
+}
+
+.course {
+  background-color: #a8eb12;
+  transition: 1s;
+}
+
+.category {
+  background-color: #00bf72;
+  transition: 1s;
+}
+
+.teacher a {
+  text-decoration: none;
+  background-color: white;
+}
+
+.course a {
+  text-decoration: none;
+}
+
+.category a {
+  text-decoration: none;
+}
+
+.teacher:hover {
+  transform: scale(1.1);
+  box-shadow: 5px 5px 10px 2px seashell;
+}
+
+.course:hover {
+  transform: scale(1.1);
+  box-shadow: 5px 5px 10px 2px silver;
+}
+
+.category:hover {
+  transform: scale(1.1);
+  box-shadow: 5px 5px 10px 2px aqua;
+}
