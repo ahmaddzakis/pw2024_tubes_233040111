@@ -68,7 +68,9 @@ $videos = query("SELECT *
       <div class="container">
         <div class="row">
           <div class="col-6 left">
+            <?php if (isset($_SESSION["login"])) : ?>
             <h4>Hey, <?= $_SESSION["name"]; ?></h4>
+            <?php endif; ?>
             <h2>ONLINE EDUCATION</h2>
             <h3>Learn the <br>
               Skills You Need <br>

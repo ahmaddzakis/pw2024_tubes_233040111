@@ -1,3 +1,8 @@
+<?php 
+?>
+
+
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar">
       <div class="container">
@@ -33,6 +38,7 @@
               <a class="nav-link" href="../halaman/categories.php">Categories</a>
               <a class="nav-link" href="../halaman/coursesPage.php">Courses</a>
               <a class="nav-link" href="../halaman/teachers.php">Teachers</a>
+              <?php if(isset($_SESSION["login"]) && $_SESSION["level"] === "Admin") : ?>
               <div class="dropdown-center">
                 <button class="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   ACCOUNT
@@ -41,6 +47,7 @@
                   <li><a class="dropdown-item" href="../admin/dashboard.php">Admin</a></li>
                 </ul>
               </div>
+              <?php endif; ?>
               <a class="nav-link" href="../logout.php">Logout</a>
             </div>
           </div>

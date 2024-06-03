@@ -49,8 +49,6 @@ function register($data) {
 }
 
 function user($data) {
-  $conn = koneksi();
-
   $email = $data;
 
   $username = query("SELECT name FROM users WHERE email = '$email'")[0]["name"];

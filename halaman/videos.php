@@ -41,6 +41,7 @@ $link = query("SELECT link FROM videos WHERE id = $id")[0];
 <body>
   <?php require "navbar.php" ?>
   <a href="javascript:history.back()" class="back badge text-bg-dark text-decoration-none p-2">BACK</a>
+  <h2><marquee direction="left" behavior="alternate" class="text-white fw-bold border ">KEEP IT UP</marquee></h2>
 
   <div class="container row">
       <iframe width="1260" height="615" src="<?= $link["link"]; ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

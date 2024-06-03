@@ -53,7 +53,7 @@ $videos = query("SELECT *
     <?php require "navbar.php"; ?>
     <div class="container">
     <a href="javascript:history.back()" class="badge text-bg-dark text-decoration-none p-2">BACK</a>
-    <h1 class="text-center">WATCH ONLINE COURSE</h1>
+    <h1 class="text-center">WATCH ONLINE COURSE NOW !</h1>
     <h1><marquee direction="right" scrollamount="20" class="fw-bold bg bg-success rounded ">JUST DO IT! YOU CAN DO IT! JUST DO IT! YOU CAN DO IT! JUST DO IT! YOU CAN DO IT! JUST DO IT! YOU CAN DO IT!</marquee></h1>
     </div>
 

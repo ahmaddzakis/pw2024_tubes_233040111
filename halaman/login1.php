@@ -18,8 +18,8 @@ if (isset($_POST["login"])) {
       $_SESSION["login"] = true;
       $email = $_POST["email"];
       $_SESSION["name"] = user($email);
-      // $_SESSION["role"] = admin($admin);
-
+      $name = $_SESSION["name"];
+      $_SESSION["level"] = query("SELECT level FROM users WHERE name = '$name'")[0]["level"];
 
       header ("Location: index.php");
       exit;

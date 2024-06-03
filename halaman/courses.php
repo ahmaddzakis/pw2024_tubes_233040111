@@ -61,7 +61,6 @@ $courses = query("SELECT *,
     <div class="container">
     <a href="categories.php" class="badge text-bg-dark text-decoration-none p-2">BACK</a>
     <h1 class="text-center fw-bold bg bg-light rounded m-4 p-4"><?= $courses[0]["category_name"] ?></h1>
-    <h1><marquee direction="up" scrollamount="20" class="fw-bold bg bg-success rounded-circle ">--------------------------------------------------------------------------------</marquee></h1>
     <h2 class="text-center">LET'S LEARN!</h2>
 
     
@@ -79,6 +78,7 @@ $courses = query("SELECT *,
           </a>
         <?php endforeach ; ?>
     </div>
+        <h1><marquee direction="up" scrollamount="20" class="fw-bold bg bg-success rounded-circle ">--------------------------------------------------------------------------------</marquee></h1>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

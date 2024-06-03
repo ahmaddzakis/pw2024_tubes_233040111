@@ -6,11 +6,14 @@ require("../functions/fungsi.php");
 if(isset($_POST["sign-up"])) {
   if(register($_POST) > 0) {
     echo "<script>alert('Yey, User Baru Berhasil ditambahkan!')</script>";
+    header("Location: login1.php");
+    exit;
   } else {
     $conn = koneksi();
     echo mysqli_error($conn);
   }
 }
+
 
 ?>
 
@@ -27,7 +30,6 @@ if(isset($_POST["sign-up"])) {
         background-color: aliceblue;
       }
     </style>
-    <!-- <link rel="stylesheet" href="../css/login1.css"> -->
   </head>
   <body>
     <section>
