@@ -4,11 +4,6 @@ require "../functions/fungsi.php";
 
 session_start();
 
-if(!isset($_SESSION["login"])) {
-  header("Location: login.php");
-  exit;
-}
-
 $categories = query("SELECT * FROM categories");
 
 

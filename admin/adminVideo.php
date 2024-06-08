@@ -18,6 +18,39 @@ $videos = query("SELECT *,
   JOIN courses ON courses.id = videos.course_id 
   JOIN categories ON courses.category_id = categories.id ORDER BY videos.id");
 
+// tombol jika ditekan
+if(isset($_POST["search"])) {
+  $videos = searchVid($_POST["keyword"]);
+}
+
+if(isset($_POST["sort"])) {
+  if($_POST["sort"] === "old") {
+    $videos = query("SELECT *, 
+                      videos.name AS title,
+                      categories.name AS category_name,
+                      courses.name AS course_name,
+                      videos.id AS video_id
+                      FROM videos INNER 
+                      JOIN courses ON courses.id = videos.course_id 
+                      JOIN categories ON courses.category_id = categories.id ORDER BY videos.id ASC  
+  ");
+  }
+
+  if($_POST["sort"] === "new") {
+    $videos = query("SELECT *,
+                videos.name AS title,
+                categories.name AS category_name,
+                courses.name AS course_name,
+                videos.id AS video_id
+                FROM videos INNER 
+                JOIN courses ON courses.id = videos.course_id 
+                JOIN categories ON courses.category_id = categories.id ORDER BY videos.id 
+                DESC
+  ");
+  }
+}
+
+
 ?>
 
 <!doctype html>
@@ -34,9 +67,29 @@ $videos = query("SELECT *,
     <?php require "../halaman/navbar.php"; ?>
     <div class="container">
     <a href="../admin/dashboard.php" class="badge text-bg-dark text-decoration-none p-2">BACK</a>
-    <h1>Admin Dashboard</h1>
+    <h1 class="bg-info rounded p-2 m-3 text-center">Admin Dashboard</h1>
+    <form action="" method="POST">
+     <select  class="bg-info text-white p-2 m-3 fw-bold rounded shadow-sm" name="sort" id="sort" onchange="this.form.submit();">
+      <?php if($_POST["sort"] === "old") : ?>
+      <option value="new">NEWEST</option>
+      <option value="old" selected>LATEST</option>
+      <?php else : ?>
+        <option value="new" selected>NEWEST</option>
+        <option value="old">LATEST</option>
+        <?php endif; ?>
+     </select>
+    </form>
+
+        <nav class="navbar">
+              <div class="container-fluid">
+                <form class="d-flex" role="search" action="" method="POST">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword" autofocus autocomplete="off">
+                  <button class="btn btn-outline-secondary" type="submit" name="search">Search</button>
+                  </form>
+                </div>
+              </nav>
     <a href="tambahVideo.php" class="btn btn-warning"><i class="bi bi-plus-square"></i></a>
-    <table class="table">
+    <table class="table table table-striped table-hover">
   <thead>
     <tr>
       <th scope="col"></th>

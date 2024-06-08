@@ -21,31 +21,28 @@ $courses = query("SELECT *,
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KURSUS BAHASA INGGRIS </title>
+    <title>KURSUS BAHASA INGGRIS</title>
     <link rel="stylesheet" href="../css/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
     <style>
       body {
-        height: 250vh;
+        min-height: 100vh;
         background-color: pink;
       }
 
       .card-row {
         width: 100%;
-        height: 180vh;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-      } 
-
-      .card-row a {
-        width: 18rem;
-        justify-self: center;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
       }
 
       .card {
-        align-self: flex-start;
-        transition: 300ms;
-        box-shadow: 2px 2px 10px 4px salmon;
+        margin: auto;
       }
 
       .card:hover {
@@ -54,31 +51,43 @@ $courses = query("SELECT *,
         box-shadow: 2px 2px 10px 4px white;
       }
 
+      .courses {
+        background-color: pink;
+      }
+
+      .back {
+        margin-left: 30px;
+      }
     </style>
   </head>
   <body>
     <?php require "navbar.php"; ?>
-    <div class="container">
-    <a href="categories.php" class="badge text-bg-dark text-decoration-none p-2">BACK</a>
-    <h1 class="text-center fw-bold bg bg-light rounded m-4 p-4"><?= $courses[0]["category_name"] ?></h1>
-    <h2 class="text-center">LET'S LEARN!</h2>
-
-    
-    <div class="card-row">
-        
-        <?php foreach($courses as $crs) : ?>
-          <a href="coursesDet.php?videos=<?= $crs["course_id"]; ?>" class="col-3 text-decoration-none">
-            <div class="card" style="width: 18rem;">
-              <img src="../img/<?= $crs["course_image"]; ?>" class="card-img-top" alt="thumbnail">
-              <div class="card-body">
-                <p class="card-text text-center fs-6"><?= $crs["course_name"]; ?></p>
-                <p class="card-text text-center fs-6"><?= $crs["teacher_name"]; ?></p>
+    <h1 class="text-center fw-bold bg bg-light rounded m-2 p-2"><?= $courses[0]["category_name"] ?></h1>
+    <a href="categories.php" class="badge back text-bg-dark text-decoration-none p-2">BACK</a>
+    <section id="teachers" class="courses">
+      <div class="container">
+          <h1 class="jud">PICK A COURSE</h1>
+          <div class="row card-row">
+          <?php foreach($courses as $crs) : ?>
+            <a href="coursesDet.php?videos=<?= $crs["course_id"]; ?>">
+              <div class="card" style="width: 18rem;">
+                <img src="../img/<?= $crs["course_image"]; ?>" class="card-img-top" alt="thumbnail">
+                <div class="card-body">
+                  <p class="card-text text-center fs-6"><?= $crs["course_name"]; ?></p>
+                  <p class="card-text text-center fs-6"><?= $crs["teacher_name"]; ?></p>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
         <?php endforeach ; ?>
-    </div>
-        <h1><marquee direction="up" scrollamount="20" class="fw-bold bg bg-success rounded-circle ">--------------------------------------------------------------------------------</marquee></h1>
+          </div>
+        </div>
+      </section>
+      <!-- End Courses -->
+
+      <!-- Footer -->
+      <?php require "footer.php"; ?>
+      <!-- End Footer -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -14,12 +14,17 @@ courses.id AS course_id,
 courses.name AS course_name,
 courses.image AS course_image,
 courses.detail AS course_detail,
-categories.name AS category_name,
-teachers.name AS teacher_name
+courses.teacher_name AS teacher_name,
+categories.name AS category_name
 FROM courses
 LEFT JOIN categories ON categories.id = courses.category_id
-LEFT JOIN teachers ON courses.id = teachers.course_id
-ORDER BY courses.id");
+LEFT JOIN teachers ON teachers.id = teacher_id
+ORDER BY courses.id DESC");
+
+// tombol cari ditekan
+if(isset($_POST["search"]))  {
+  $courses = searchCour($_POST["keyword"]);
+}
 
 ?>
 
@@ -38,8 +43,16 @@ ORDER BY courses.id");
     <div class="container">
       <a href="../admin/dashboard.php" class="badge text-bg-dark text-decoration-none p-2">BACK</a>
       <h1>Admin Dashboard</h1>
+      <nav class="navbar">
+              <div class="container-fluid">
+                <form class="d-flex" role="search" action="" method="POST">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword" autofocus autocomplete="off">
+                  <button class="btn btn-outline-secondary" type="submit" name="search">Search</button>
+                  </form>
+                </div>
+              </nav>
       <a href="tambahCourse.php" class="btn btn-warning"><i class="bi bi-plus-square"></i></a>
-    <table class="table">
+    <table class="table table-striped table-hover">
   <thead>
     <tr>
       <th scope="col"></th>

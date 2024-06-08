@@ -51,6 +51,7 @@ $videos = query("SELECT *
   </head>
   <body>
     <?php require "navbar.php"; ?>
+    <?php if(isset($_SESSION["login"])) : ?>
     <div class="container">
     <a href="javascript:history.back()" class="badge text-bg-dark text-decoration-none p-2">BACK</a>
     <h1 class="text-center">WATCH ONLINE COURSE NOW !</h1>
@@ -68,6 +69,9 @@ $videos = query("SELECT *
           </div>
         </a>
       <?php endforeach ; ?>
+      <?php else : ?>
+        <h1 class="bg bg-danger text-white text-center m-4 p-4"><marquee behavior="alternate" scrollamout="20" direction="right">ANDA HARUS <a href="login1.php">LOG - IN</a> TERLEBIH DAHULU UNTUK MENGAKSES VIDEO</marquee></h1>
+        <?php endif; ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 body {
+  position: relative;
   margin: 0;
   padding: 0;
   /* background-color: #a379fc;
   background: linear-gradient(to left, #75757a, #a379fc); */
   font-size: 1.2rem;
   /* min-height: 4000px; */
+  animation: fadeIn 150ms ease-in-out;
 }
 
 /* Navbar */
@@ -84,6 +86,7 @@ body {
   height: 400px !important;
   overflow-y: hidden;
 }
+
 .categories {
   display: flex;
   justify-content: center;
@@ -124,9 +127,9 @@ body {
   background-color: #e0d2b7;
   background-size: cover;
   min-height: 100vh;
-  margin-top: -3rem;
+  /* margin-top: -3rem; */
   padding-top: 15rem;
-  padding-bottom: 5rem;
+  /* padding-bottom: 5rem; */
 }
 
 .courses h1 {
@@ -138,6 +141,10 @@ body {
   margin-top: -9rem;
   letter-spacing: 10px;
   margin-bottom: 50px;
+}
+
+.jud {
+  margin-top: -190px;
 }
 /* End Courses */
 
@@ -152,8 +159,6 @@ body {
   background-color: #ddd9d1;
   background-size: cover;
   min-height: 100vh;
-  margin-top: -3rem;
-  padding-top: 15rem;
   padding-bottom: 5rem;
 }
 
@@ -163,9 +168,10 @@ body {
 }
 
 .teachers h2 {
-  margin-top: -9rem;
+  /* margin-top: -9rem; */
   letter-spacing: 10px;
   margin-bottom: 50px;
+  margin-top: 20px;
 }
 
 .card {
@@ -180,8 +186,32 @@ body {
 
 /* End Teachers */
 
+/* Card */
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.card-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.card {
+  margin: auto;
+}
+
+.card-row a {
+  text-decoration: none;
+}
+/* End Card */
+
 /* Footer */
 footer {
+  width: 100%;
   padding: 3rem;
   background-color: #ffc0cb;
   color: white;
@@ -203,3 +233,14 @@ footer li {
   margin: 0.5rem;
 }
 /* End Footer */
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* End Animation */

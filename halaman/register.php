@@ -8,9 +8,9 @@ if(isset($_POST["sign-up"])) {
     echo "<script>alert('Yey, User Baru Berhasil ditambahkan!')</script>";
     header("Location: login1.php");
     exit;
-  } else {
-    $conn = koneksi();
-    echo mysqli_error($conn);
+    } else {
+      $conn = koneksi();
+      echo mysqli_error($conn);
   }
 }
 
@@ -28,6 +28,15 @@ if(isset($_POST["sign-up"])) {
     <style>
       body {
         background-color: aliceblue;
+      }
+
+      .row {
+        animation: fadeIn 300ms ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
       }
     </style>
   </head>

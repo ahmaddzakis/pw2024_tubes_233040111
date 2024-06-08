@@ -10,12 +10,16 @@ if(!isset($_SESSION["login"])) {
 require '../functions/fungsi.php';
 
 $teachers = query("SELECT *,
-courses.name AS name,
 teachers.id AS teacher_id,
 teachers.name AS teacher_name,
 teachers.image as teacher_image,
 teachers.description AS description
-FROM courses RIGHT JOIN teachers ON courses.id = course_id");
+FROM teachers ORDER BY teachers.id DESC");
+
+// tombol cari ditekan
+if(isset($_POST["search"])) {
+  $teachers = searchTeac($_POST["keyword"]);
+}
 
 ?>
 
@@ -34,14 +38,21 @@ FROM courses RIGHT JOIN teachers ON courses.id = course_id");
     <div class="container">
       <a href="../admin/dashboard.php" class="badge text-bg-dark text-decoration-none p-2">BACK</a>
       <h1>Admin Dashboard</h1>
+      <nav class="navbar">
+              <div class="container-fluid">
+                <form class="d-flex" role="search" action="" method="POST">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword" autofocus autocomplete="off">
+                  <button class="btn btn-outline-secondary" type="submit" name="search">Search</button>
+                  </form>
+                </div>
+              </nav>
       <a href="tambahTeacher.php" class="btn btn-warning"><i class="bi bi-plus-square"></i></a>
-    <table class="table">
+    <table class="table table table-striped table-hover">
   <thead>
     <tr>
       <th scope="col"></th>
       <th scope="col">Image</th>
       <th scope="col">Name</th>
-      <th scope="col">Course</th>
       <th scope="col">Description</th>
       <th scope="col">Action</th>
     </tr>
@@ -53,11 +64,10 @@ FROM courses RIGHT JOIN teachers ON courses.id = course_id");
         <th scope="row"><?= $i ?></th>
       <td><img src="../img/<?= $tch["teacher_image"]; ?>" alt="" width="100px"></td>
       <td><?= $tch['teacher_name'] ?></td>
-      <td><?= $tch['name'] ?></td>
       <td><?= $tch['description'] ?></td>
       
       <td>
-          <a href="updateTeacher.php?id=<?= $tch["id"] ?>" class="badge text-bg-warning text-decoration-none">Change</a> 
+          <a href="updateTeacher.php?id=<?= $tch["teacher_id"] ?>" class="badge text-bg-warning text-decoration-none">Change</a> 
           <a href="removeTeacher.php?id=<?= $tch['teacher_id']; ?>" onclick="return confirm('You Sure?');" class="badge text-bg-danger text-decoration-none">Remove</a>
     </td>
     </tr>

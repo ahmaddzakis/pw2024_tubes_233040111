@@ -2,7 +2,7 @@
 require "../functions/fungsi.php";
 
 $id = $_GET["id"];
-$tch = query("SELECT *, teachers.id AS teacher_id, teachers.name AS teacher_name, teachers.description AS teacher_description, courses.id AS course_id, courses.name AS course_name FROM teachers LEFT JOIN courses ON courses.id = teachers.course_id WHERE teachers.id = $id")[0];
+$tch = query("SELECT *, teachers.id AS teacher_id, teachers.name AS teacher_name, teachers.description AS teacher_description, courses.id AS course_id, courses.name AS course_name, teachers.image AS teacher_image FROM teachers LEFT JOIN courses ON teacher_id = teachers.id WHERE teachers.id = $id")[0];
 
 session_start();
 
@@ -12,15 +12,13 @@ if(!isset($_SESSION["login"])) {
 }
 
 
-// Jika tombol tambah ditekan
 if (isset($_POST["change"])) {
   // Jika data berhasil ditambahkan
-  if (change($_POST) > 0) {
-    echo "<script>
-        alert('Data berhasil diubah!');
-        document.location.href = '../admin/adminTeacher.php';
-      </script>";
-  }
+  echo "<script>
+      alert('Data berhasil diubah!');
+      document.location.href = '../admin/adminTeacher.php';
+    </script>";
+  change($_POST);
 }
 
 ?>
@@ -51,13 +49,13 @@ if (isset($_POST["change"])) {
       </div>
 
       <div class="mb-3">
-        <input type="hidden" name="old_image">
+        <input type="hidden" name="old_image" value="<?= $tch["teacher_image"]; ?>">
         <label for="image" class="form-label">Change Image</label>
-        <input type="file" class="form-control" id="image" name="image" placeholder="Change Image" required>
+        <input type="file" class="form-control" id="image" name="image" placeholder="Change Image">
       </div>
       
       <input type="hidden" name="teacher_id" value="<?= $tch["teacher_id"]; ?>">
-      <button type="submit" name="change" class="btn btn-secondary">Change</button>
+      <button name="change" class="btn btn-secondary">Change</button>
       </form>
 
     </div>

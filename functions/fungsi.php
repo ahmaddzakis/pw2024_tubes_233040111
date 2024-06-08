@@ -5,6 +5,7 @@ return $conn;
 }
 
 function query($query) {
+  // var_dump($query); die();
   $conn = koneksi();
 
   $result = mysqli_query($conn, $query);
@@ -31,11 +32,11 @@ function register($data) {
 
   $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
   if(mysqli_fetch_assoc($result)) {
-      echo "<script>alert('Email sudah terdaftar')</script>";
+      echo "<script>alert('Email sudah terdaftar!')</script>";
       return false;
   }
 
-  $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '$username'");
+  $result = mysqli_query($conn, "SELECT * FROM users WHERE name = '$username'");
   if(mysqli_fetch_assoc($result)) {
       echo "<script>alert('Username sudah terpakai!')</script>";
       return false;
@@ -90,15 +91,13 @@ function tambah_course($data) {
     return false;
   }
   
-  $query = "INSERT INTO courses (category_id, name, teacher_name, image, detail)
-            VALUES('$category_id', '$course_name', '$teacher_name', '$image', '$detail')
+  $query = "INSERT INTO courses (category_id, teacher_id, name, teacher_name, image, detail)
+            VALUES('$category_id', '$teacher_id', '$course_name', '$teacher_name', '$image', '$detail')
             ";
 
 mysqli_query($conn, $query) or die(mysqli_error($conn));
 
  $course_id = query("SELECT id FROM courses WHERE name = '$course_name'")[0]["id"];
-
- mysqli_query($conn, "UPDATE teachers SET course_id = $course_id WHERE name = '$teacher_name'");
 
   return mysqli_affected_rows($conn);
 }
@@ -222,7 +221,17 @@ function change($data) {
               ";
   mysqli_query($conn, $query);
 
-  return mysqli_affected_rows($conn);
+  if(mysqli_affected_rows($conn) > 0) {
+    $query2 = "UPDATE courses SET
+                teacher_name = '$name'
+                WHERE teacher_id = $id 
+                ";
+    mysqli_query($conn, $query2);
+    
+    return mysqli_affected_rows($conn);
+  }
+
+  return false;
 }
 
 function change_course($data) {
@@ -275,7 +284,6 @@ function change_video($data) {
   $query = "UPDATE videos SET
               name = '$title',
               link = '$link',
-              -- video_id = '$video_id',
               thumbnail = '$thumbnail'
               WHERE id = $id 
               ";
@@ -285,14 +293,75 @@ function change_video($data) {
   return mysqli_affected_rows($conn);
 }
 
-function seacrh($keyword) {
-  $query = "SELECT * FROM mahasiswa
+function searchCour($keyword) {
+  $query = "SELECT *,
+              courses.id AS course_id,
+              courses.name AS course_name,
+              courses.image AS course_image,
+              courses.detail AS course_detail,
+              courses.teacher_name AS teacher_name,
+              categories.name AS category_name
+              FROM courses
+              LEFT JOIN categories ON categories.id = courses.category_id
+              LEFT JOIN teachers ON teachers.id = courses.teacher_id
               WHERE
-              nama LIKE '%$keyword%' OR
-              nama LIKE '%$keyword%' OR
-              email LIKE '%$keyword%' OR
-              jurusan LIKE '%$keyword%'
+              courses.name LIKE '%$keyword%' OR
+              teacher_name LIKE '%$keyword%'
+              ORDER BY courses.id DESC
   ";
+
+  return query($query);
+}
+
+function searchTeac($keyword) { 
+        $query = "SELECT *,
+            teachers.id AS teacher_id,
+            teachers.name AS teacher_name,
+            teachers.image as teacher_image,
+            teachers.description AS description
+            FROM teachers
+            WHERE
+            teachers.name LIKE '%$keyword%' OR
+            teachers.description LIKE '%$keyword%'
+            ORDER BY teachers.id DESC
+            
+            ";
+//  var_dump($keyword, $query); die();
+  return query($query);
+}
+
+function searchVid($keyword) {
+        $query = "SELECT *, 
+        videos.name AS title,
+        categories.name AS category_name,
+        courses.name AS course_name,
+        videos.id AS video_id
+        FROM videos INNER 
+        JOIN courses ON courses.id = videos.course_id 
+        JOIN categories ON courses.category_id = categories.id
+        WHERE
+        videos.name LIKE '%$keyword%' OR
+        categories.name LIKE '%$keyword%' OR
+        courses.name LIKE '%$keyword%'
+        ORDER BY videos.id DESC
+            ";
+
+  return query($query);
+}
+
+function searchPage($keyword) {
+  $query = "SELECT *, 
+  courses.name AS course_name,
+  courses.image AS course_image,
+  categories.detail AS category_detail,
+  categories.name AS category_name,
+  courses.id AS course_id
+  FROM courses
+  LEFT JOIN categories ON category_id = categories.id
+  WHERE
+  courses.name LIKE '%$keyword%' OR
+  courses.teacher_name LIKE '%$keyword%'
+  ORDER BY courses.id";
 
   return query($query);
 }

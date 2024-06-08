@@ -1,3 +1,14 @@
+<?php 
+session_start();
+require "../functions/fungsi.php";
+
+if(!isset($_SESSION["login"])) {
+  header("Location: login.php");
+  exit;
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,6 +23,7 @@
   <body>
     <?php require "../halaman/navbar.php"; ?>
     <div class="container">
+      <a href="../print.php">print</a>
       <a href="../halaman/index.php" class="badge text-bg-dark text-decoration-none p-2 mb-4">HOME</a>
       <h1 class="text-warning text-center p-2 mb-4 bg-info rounded">Welcome to Admin Dashboard</h1>
       <div class="row">

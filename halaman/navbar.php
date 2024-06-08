@@ -1,12 +1,7 @@
-<?php 
-?>
-
-
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar">
       <div class="container">
-        <a class="navbar-brand" href="#">CaNDy ENGLISH COURSE</a>
+        <a class="navbar-brand" href="index.php">CaNDy ENGLISH COURSE</a>
         <button
           class="navbar-toggler border-0"
           type="button"
@@ -41,14 +36,21 @@
               <?php if(isset($_SESSION["login"]) && $_SESSION["level"] === "Admin") : ?>
               <div class="dropdown-center">
                 <button class="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  ACCOUNT
+                  ADMIN
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="../admin/dashboard.php">Admin</a></li>
+                  <li><a class="dropdown-item" href="../admin/dashboard.php">Edit</a></li>
                 </ul>
               </div>
               <?php endif; ?>
-              <a class="nav-link" href="../logout.php">Logout</a>
+              <?php if(isset($_SESSION["login"])) : ?>
+              <a class="nav-link" href="../logout.php" onclick="return confirm('You Sure?');">Log-out</a>
+              <?php else : ?>
+                <a class="nav-link" href="login1.php">Log-In</a>
+              <?php endif; ?>
+
+
+
             </div>
           </div>
         </div>

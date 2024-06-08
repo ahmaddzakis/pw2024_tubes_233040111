@@ -9,7 +9,6 @@ $videos = query("SELECT *
                 FROM videos"
                 );
 
-
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +54,22 @@ $videos = query("SELECT *
         box-shadow: 2px 2px 10px 4px white;
       }
 
+      .right img {
+        animation: gokil 2s infinite;
+      }
+
+      @keyframes gokil {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+
+
     </style>
 </head>
 <body>
@@ -76,11 +91,11 @@ $videos = query("SELECT *
               Skills You Need <br>
               To Succed</h3>
               <p>Free online courses with expert teachers from around the world. <a href="coursesPage.php">Let's learn!</a></p>
-              <nav class="navbar bg-body-tertiary">
+              <nav class="navbar bg-body-tertiary rounded">
               <div class="container-fluid">
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-secondary" type="submit">Search</button>
+                <form action="coursesPage.php" method="post" class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search Courses" aria-label="Search" name="keyword" autocomplete="off">
+                  <button class="btn btn-outline-secondary" type="submit" name="search">Search</button>
                   </form>
                 </div>
               </nav>
@@ -142,7 +157,8 @@ $videos = query("SELECT *
 
     <!-- Videos -->
 
-    <h1 class="m-3 fw-bold border"><marquee behavior="alternate" scrollamount="15" direction="right">WATCH VIDEOS BY CATEGORY</marquee></h1>
+    <h1 class="m-3 fw-bold border"><marquee behavior="alternate" scrollamount="15" direction="right">WATCH VIDEOS</marquee></h1>
+    <?php if(isset($_SESSION["login"])) : ?>
     <div class="card-row">
       <?php foreach($videos as $vid) : ?>
         <a href="videos.php?id=<?= $vid["id"]; ?>" class="col-3 text-decoration-none">
@@ -155,7 +171,9 @@ $videos = query("SELECT *
         </a>
       <?php endforeach ; ?>
     </div>
-
+    <?php else : ?>
+      <h1 class="bg bg-danger text-white text-center m-4 p-4"><marquee behavior="alternate" scrollamout="20" direction="right">ANDA HARUS <a href="login1.php">LOG - IN</a> TERLEBIH DAHULU UNTUK MENGAKSES VIDEO</marquee></h1>
+  <?php endif; ?>
     <!-- End Videos -->
 
       <!-- Footer -->

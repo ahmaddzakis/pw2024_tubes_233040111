@@ -42,6 +42,15 @@ if (isset($_POST["login"])) {
       body {
         background-color: aqua;
       }
+
+      .row {
+        animation: fadeIn 300ms ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0;}
+        to { opacity: 1;}
+      }
     </style>
     <!-- <link rel="stylesheet" href="../css/login1.css"> -->
   </head>

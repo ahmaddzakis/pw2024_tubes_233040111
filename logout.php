@@ -4,6 +4,6 @@ session_start();
 
 session_destroy();
 
-header("Location: halaman/login1.php");
+header("Location: halaman/index.php");
 
 ?>
