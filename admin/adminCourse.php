@@ -37,12 +37,15 @@ if(isset($_POST["search"]))  {
     <link rel="stylesheet" href="../css/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
   </head>
   <body>
     <?php require "../halaman/navbar.php"; ?>
     <div class="container">
       <a href="../admin/dashboard.php" class="badge text-bg-dark text-decoration-none p-2">BACK</a>
-      <h1>Admin Dashboard</h1>
+      
+      <h1 class="bg-info rounded p-2 m-3 text-center">Admin Dashboard</h1>
       <nav class="navbar">
               <div class="container-fluid">
                 <form class="d-flex" role="search" action="" method="POST">
@@ -52,7 +55,9 @@ if(isset($_POST["search"]))  {
                 </div>
               </nav>
       <a href="tambahCourse.php" class="btn btn-warning"><i class="bi bi-plus-square"></i></a>
+      <a href="../print.php" class="bg-info rounded p-2 mt-5 shadow text-white text-center text-decoration-none fw-bold">PRINT <i class="fa-solid fa-print"></i></a>
     <table class="table table-striped table-hover">
+    
   <thead>
     <tr>
       <th scope="col"></th>

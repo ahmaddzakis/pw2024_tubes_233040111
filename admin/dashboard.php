@@ -23,9 +23,8 @@ if(!isset($_SESSION["login"])) {
   <body>
     <?php require "../halaman/navbar.php"; ?>
     <div class="container">
-      <a href="../print.php">print</a>
       <a href="../halaman/index.php" class="badge text-bg-dark text-decoration-none p-2 mb-4">HOME</a>
-      <h1 class="text-warning text-center p-2 mb-4 bg-info rounded">Welcome to Admin Dashboard</h1>
+      <h1 class="fw-bold text-center p-2 mb-4 bg-info rounded">Welcome to Admin Dashboard</h1>
       <div class="row">
         <div class="col-12 kotak">
           <div class="teacher p-2">

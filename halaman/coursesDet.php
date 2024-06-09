@@ -2,6 +2,7 @@
 session_start();
 require "../functions/fungsi.php";
 $id = $_GET["videos"];
+$courses = query("SELECT *, courses.detail AS course_detail, teachers.image AS teacher_image, teachers.name AS teacher_name, courses.name AS course_name FROM courses JOIN teachers ON teacher_id = teachers.id JOIN videos ON course_id = courses.id WHERE courses.id = $id")[0];
 $videos = query("SELECT *
                 FROM videos 
                 WHERE course_id = $id");
@@ -38,13 +39,30 @@ $videos = query("SELECT *
       .card {
         align-self: flex-start;
         transition: 300ms;
+        height: 250px !important;
         box-shadow: 2px 2px 10px 4px salmon;
+        overflow-y: hidden;
       }
 
       .card:hover {
         transform: scale(1.1);
         font-weight: 500;
         box-shadow: 2px 2px 10px 4px white;
+      }
+
+      .detail .col-4, .detail .col-8 {
+        height: 300px;
+        }
+        
+      .detail .col-4 {
+      }
+
+      .detail .col-4 h4 {
+        letter-spacing: 5px;
+      }
+          
+      .detail .col-8 {
+        overflow-y: scroll;
       }
 
     </style>
@@ -54,8 +72,22 @@ $videos = query("SELECT *
     <?php if(isset($_SESSION["login"])) : ?>
     <div class="container">
     <a href="javascript:history.back()" class="badge text-bg-dark text-decoration-none p-2">BACK</a>
-    <h1 class="text-center">WATCH ONLINE COURSE NOW !</h1>
+    <h1 class="text-center fw-bold">WATCH ONLINE COURSE NOW !</h1>
+    <h2 class="text-center "><?= $courses["course_name"]; ?></h2>
     <h1><marquee direction="right" scrollamount="20" class="fw-bold bg bg-success rounded ">JUST DO IT! YOU CAN DO IT! JUST DO IT! YOU CAN DO IT! JUST DO IT! YOU CAN DO IT! JUST DO IT! YOU CAN DO IT!</marquee></h1>
+    </div>
+
+    <div class="container mb-5">
+      <div class="row detail">
+        <div class="col-4 d-flex align-items-center justify-content-center flex-column">
+          <img src="../img/<?= $courses["teacher_image"]; ?>"  width="200" alt="guru">
+          <h4><?= $courses["teacher_name"]; ?></h4>
+        </div>
+        <div class="col-8">
+          <h3 class="text-center">Detail</h3>
+          <p><?= $courses["course_detail"]; ?></p>
+        </div>
+      </div>
     </div>
 
     <div class="card-row">

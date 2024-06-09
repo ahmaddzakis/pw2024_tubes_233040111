@@ -37,7 +37,7 @@ if(isset($_POST["search"])) {
     <?php require "../halaman/navbar.php"; ?>
     <div class="container">
       <a href="../admin/dashboard.php" class="badge text-bg-dark text-decoration-none p-2">BACK</a>
-      <h1>Admin Dashboard</h1>
+      <h1 class="bg-info rounded p-2 m-3 text-center">Admin Dashboard</h1>
       <nav class="navbar">
               <div class="container-fluid">
                 <form class="d-flex" role="search" action="" method="POST">
