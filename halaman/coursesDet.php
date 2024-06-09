@@ -53,9 +53,6 @@ $videos = query("SELECT *
       .detail .col-4, .detail .col-8 {
         height: 300px;
         }
-        
-      .detail .col-4 {
-      }
 
       .detail .col-4 h4 {
         letter-spacing: 5px;
