@@ -44,7 +44,7 @@ $html = '
     $i = 1;
     foreach($courses as $course) {
 
-      $html.= '<tr>
+      $html .= '<tr>
         <th scope="row">' . $i . '</th>
       <td><img src="img/' . $course["course_image"] . '" alt="" width="100px"></td>
       <td>' . $course['course_name'] . '</td>
@@ -55,7 +55,7 @@ $html = '
      $i++;
     }
 
-$html .=  '</tbody>
+$html .= '</tbody>
 </table>
 </body>
 </html>';

@@ -23,7 +23,7 @@ if(isset($_POST["search"])) {
   $videos = searchVid($_POST["keyword"]);
 }
 
-if(isset($_POST["sort"])) {
+if(isset($_POST["sort"])) { 
   if($_POST["sort"] === "old") {
     $videos = query("SELECT *, 
                       videos.name AS title,
@@ -32,7 +32,7 @@ if(isset($_POST["sort"])) {
                       videos.id AS video_id
                       FROM videos INNER 
                       JOIN courses ON courses.id = videos.course_id 
-                      JOIN categories ON courses.category_id = categories.id ORDER BY videos.id ASC  
+                      JOIN categories ON courses.category_id = categories.id ORDER BY videos.id ASC
   ");
   }
 
@@ -70,12 +70,12 @@ if(isset($_POST["sort"])) {
     <h1 class="bg-info rounded p-2 m-3 text-center">Admin Dashboard</h1>
     <form action="" method="POST">
      <select  class="bg-info text-white p-2 m-3 fw-bold rounded shadow-sm" name="sort" id="sort" onchange="this.form.submit();">
-      <?php if($_POST["sort"] === "old") : ?>
-      <option value="new">NEWEST</option>
-      <option value="old" selected>LATEST</option>
+      <?php if($_POST["sort"] === "new") : ?>
+      <option value="new"selected>NEWEST</option>
+      <option value="old">LATEST</option>
       <?php else : ?>
-        <option value="new" selected>NEWEST</option>
-        <option value="old">LATEST</option>
+        <option value="new">NEWEST</option>
+        <option value="old" selected>LATEST</option>
         <?php endif; ?>
      </select>
     </form>

@@ -77,7 +77,7 @@ $videos = query("SELECT *
     <div class="container mb-5">
       <div class="row detail">
         <div class="col-4 d-flex align-items-center justify-content-center flex-column">
-          <img src="../img/<?= $courses["teacher_image"]; ?>"  width="200" alt="guru">
+          <img src="../img/<?= $courses["teacher_image"]; ?>" class="rounded-circle border-dark p-2 shadow" width="200" alt="guru">
           <h4><?= $courses["teacher_name"]; ?></h4>
         </div>
         <div class="col-8">

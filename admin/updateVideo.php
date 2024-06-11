@@ -53,7 +53,7 @@ if (isset($_POST["change"])) {
       </div>
 
       <div class="mb-3">
-        <input type="hidden" name="old_thumbnail">
+      <input type="hidden" name="old_thumbnail">
         <label for="image" class="form-label">Change Thumbnail</label>
         <input type="file" class="form-control" id="image" name="image" placeholder="Change Image" required>
       </div>
