@@ -9,10 +9,25 @@ if (isset($_POST["login"])) {
   $password = $_POST["password"];
   $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
     
+  // cek cookie
+  if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
+    $id = $_COOKIE['id'];
+    $key = $_COOKIE['key'];
+
+    // ambil username berdasarkan id
+    $result = mysqli_query($conn, "SELECT name FROM users WHERE id = $id");
+    $row = mysqli_fetch_assoc($result);
+
+    // cek cookie dan username
+    if($key === hash('sha256', $row['name'])) {
+      $_SESSION['login'] = true;
+    }
+  }
+
   // Cek username
   if(mysqli_num_rows($result) === 1) {
-  // Cek password
 
+  // Cek password
     $row = mysqli_fetch_assoc(($result));
     if (password_verify($password, $row["password"])) {
       $_SESSION["login"] = true;
@@ -20,6 +35,13 @@ if (isset($_POST["login"])) {
       $_SESSION["name"] = user($email);
       $name = $_SESSION["name"];
       $_SESSION["level"] = query("SELECT level FROM users WHERE name = '$name'")[0]["level"];
+
+      // cek remember me
+      if(isset($_POST['remember'])) {
+        // buat cookie
+        setcookie('id', $row['id'], time() + 60);
+        setcookie('key', hash('sha256', $row['name']), time() + 60);
+      }
 
       header ("Location: index.php");
       exit;
@@ -75,6 +97,12 @@ if (isset($_POST["login"])) {
                   <input type="email" name="email" id="email" class="form-control my-3 py-2" placeholder="Email" required>
                   <!-- <input type="text" name="name" id="name" class="form-control my-3 py-2" placeholder="Username" required> -->
                   <input type="password" name="password" id="password" class="form-control my-3 py-2" placeholder="Password" required>
+                  <!-- <input type="checkbox" name="remember" id="remember" class="">
+                  <label for="remember">Remember me!</label> -->
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="remember" name="remember">
+                    <label class="form-check-label" for="remember">Remember me!</label>
+                  </div>
                   <div class="text-center mt-3">
                     <a href="register.php" class="nav-link m-4">Don't have an Account?</a>
                     <button class="btn btn-info fw-bold" name="login" id="login" type="submit">LOG - IN</button>

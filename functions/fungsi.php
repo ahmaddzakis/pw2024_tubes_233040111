@@ -317,7 +317,7 @@ function searchTeac($keyword) {
         $query = "SELECT *,
             teachers.id AS teacher_id,
             teachers.name AS teacher_name,
-            teachers.image as teacher_image,
+            teachers.image AS teacher_image,
             teachers.description AS description
             FROM teachers
             WHERE
@@ -365,4 +365,15 @@ function searchPage($keyword) {
 
   return query($query);
 }
+
+// pagination konfigurasi
+  $jumlahDataPerHalaman = 2;
+  $jumlahData  = count(query("SELECT * FROM teachers"));
+  // var_dump($jumlahData);
+  $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
+  // var_dump($jumlahHalaman);
+  $halamanAktif = (isset ($_GET["halaman"])) ? $_GET["halaman"] : 1;
+  // var_dump($halamanAktif);
+  $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
+
 ?>

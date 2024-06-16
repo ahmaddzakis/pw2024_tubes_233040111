@@ -1,10 +1,9 @@
 <?php
-
+session_start();
 require "../functions/fungsi.php";
 
-session_start();
-
-$teachers = query("SELECT * FROM teachers");
+// pagination
+$teachers = query("SELECT * FROM teachers LIMIT $awalData, $jumlahDataPerHalaman");
 
 ?>
 
@@ -50,6 +49,20 @@ $teachers = query("SELECT * FROM teachers");
           </div>
           <?php endforeach; ?>
           </div>
+          <!-- Navigasi -->
+           <?php if($halamanAktif > 1) : ?>
+           <a href="?halaman=<?= $halamanAktif - 1; ?>" class="text-decoration-none rounded shadow bg-light p-2">&laquo;</a>
+           <?php endif; ?>
+           <?php for($k = 1; $k <= $jumlahHalaman; $k++) : ?>
+            <?php if($k == $halamanAktif) : ?>
+            <a href="?halaman=<?= $k; ?>" class="text-danger text-decoration-none rounded shadow-lg bg-info p-3 fw-bold fs-3"><?= $k; ?></a>
+            <?php else : ?>
+              <a href="?halaman=<?= $k; ?>" class="text-decoration-none rounded shadow bg-info p-2"><?= $k; ?></a>
+              <?php endif; ?>
+           <?php endfor; ?>
+           <?php if($halamanAktif < $jumlahHalaman) :?>
+           <a href="?halaman=<?= $halamanAktif + 1; ?>" class="text-decoration-none rounded shadow bg-light p-2">&raquo;</a>
+           <?php endif; ?>
         </div>
       </section>
       <!-- End Teachers -->

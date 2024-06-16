@@ -48,9 +48,6 @@
               <?php else : ?>
                 <a class="nav-link" href="login1.php">Log-In</a>
               <?php endif; ?>
-
-
-
             </div>
           </div>
         </div>
